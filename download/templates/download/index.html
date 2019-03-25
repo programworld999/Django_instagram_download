@@ -1,0 +1,65 @@
+{% extends "download/layout.html" %} {% block content %}
+
+<div class="container" style="margin-top: 150px">
+  <div class="card text-center container col-10">
+    <div class="card-header">
+      InstaDown
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">
+        Download Your Favorite Instagram Videos & Images
+      </h5>
+      <form id="main-form" action="/submit" method="get">
+        <input
+          type="url"
+          class="container form-control"
+          placeholder="Enter video/image URL here"
+          id="url"
+          name="url"
+        />
+        <br />
+        <button href="#" class="btn btn-primary">Next</button>
+      </form>
+    </div>
+    <div class="card-footer text-muted">
+    <div class="text-center">
+    <div class="container col-11 alert alert-{{ msgType }} ">
+    {% if msgType == 'success' %}
+    <script>
+window.location = '/'
+let newWindow = open('http://fainbory.com/7p2Z', 'ads', 'width=500,height=400')
+newWindow.focus();
+
+newWindow.onload = function() {
+  let html = "<div style='container text-center alert alert-success'><h6>Download Successful!</h6></div>";
+  newWindow.document.body.insertAdjacentHTML('afterbegin', html);
+};
+
+</script>
+    {% else %}
+        <script>
+</script>
+    {% endif %}
+
+    <h3> {{ msg }} </h3>
+    </div>
+
+          Only 2 Click
+                <br />
+{% if ext == ".mp4"  %}
+
+     {% include "download/videoPlayer.html" %}
+
+
+{% else %}
+
+  <img src="{{ src }}" class="rounded container" alt=>
+
+{% endif %}
+
+<br />
+<a href="/download?url={{ src }}{{ ext }}" class="btn btn-success container" style='margin-top: 20px'>Download <i class="fa fa-download" ></i></a>
+</div>
+</div>
+
+{% endblock content %}
